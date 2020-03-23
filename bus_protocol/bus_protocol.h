@@ -17,7 +17,8 @@ typedef enum {
 typedef enum {
     BUS_PROTOCOL_PACKET_TYPE_TRANSMIT_REQUEST = 0x11,
     BUS_PROTOCOL_PACKET_TYPE_TRANSMIT_GRANT = 0x12,
-    BUS_PROTOCOL_PACKET_TYPE_DATA_SEND = 0x2,
+    BUS_PROTOCOL_PACKET_TYPE_DATA_SEND = 0x20,
+    BUS_PROTOCOL_PACKET_TYPE_DATA_REQUEST = 0x23,
     BUS_PROTOCOL_PACKET_TYPE_REQUEST_TIME = 0x21,
     BUS_PROTOCOL_PACKET_TYPE_NETWORK_TIME = 0x22,
     BUS_PROTOCOL_PACKET_TYPE_ACK = 0x30,
@@ -59,6 +60,11 @@ board_id_t bus_protocol_transmit_grant_decode(
 void bus_protocol_data_send_encode(
     const uint8_t *payload,
     const uint8_t payload_length,
+    uint8_t *packet,
+    uint8_t *packet_length);
+
+void bus_protocol_data_request_encode(
+    const board_id_t board_id,
     uint8_t *packet,
     uint8_t *packet_length);
 

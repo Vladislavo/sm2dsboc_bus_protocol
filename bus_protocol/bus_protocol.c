@@ -123,6 +123,26 @@ void bus_protocol_data_send_encode(
     (*packet_length)++;
 }
 
+void bus_protocol_data_request_encode(
+    const board_id_t board_id,
+    uint8_t *packet,
+    uint8_t *packet_length)
+{
+    *packet_length = 0;
+
+    packet[*packet_length] = START_FRAME_BYTE;
+    (*packet_length)++;
+
+    packet[*packet_length] = BUS_PROTOCOL_PACKET_TYPE_DATA_REQUEST;
+    (*packet_length)++;
+
+    packet[*packet_length] = board_id;
+    (*packet_length)++;
+
+    packet[*packet_length] = END_FRAME_BYTE;
+    (*packet_length)++;
+}
+
 void bus_protocol_request_time_encode(
     const board_id_t board_id,
     uint8_t *packet,
